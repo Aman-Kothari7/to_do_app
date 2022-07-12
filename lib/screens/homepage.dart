@@ -35,16 +35,19 @@ class _HomepageState extends State<Homepage> {
                     ),
                   ),
                   Expanded(
-                    child: ListView(
-                      children: [
-                        TaskCardWidget(
-                            title: "Get Started", desc: "Hello user..."),
-                        TaskCardWidget(),
-                        TaskCardWidget(),
-                        TaskCardWidget(),
-                        TaskCardWidget(),
-                        TaskCardWidget(),
-                      ],
+                    child: ScrollConfiguration(
+                      behavior: NoGlowBehaviour(),
+                      child: ListView(
+                        children: [
+                          TaskCardWidget(
+                              title: "Get Started", desc: "Hello user..."),
+                          TaskCardWidget(),
+                          TaskCardWidget(),
+                          TaskCardWidget(),
+                          TaskCardWidget(),
+                          TaskCardWidget(),
+                        ],
+                      ),
                     ),
                   ),
                 ],
@@ -63,7 +66,11 @@ class _HomepageState extends State<Homepage> {
                     width: 60.0,
                     height: 60.0,
                     decoration: BoxDecoration(
-                      color: Color(0XFF7349FE),
+                      gradient: LinearGradient(
+                        colors: [Color(0XFF7349FE), Color(0xFF643FDB)],
+                        begin: Alignment(0.0, -1.0),
+                        end: Alignment(0.0, 1.0),
+                      ),
                       borderRadius: BorderRadius.circular(20.0),
                     ),
                     child:
