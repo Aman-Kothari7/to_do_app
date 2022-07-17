@@ -4,13 +4,25 @@ import 'package:to_do_list_app/models/task.dart';
 import '../widgets.dart';
 
 class Taskpage extends StatefulWidget {
-  const Taskpage({Key? key}) : super(key: key);
+  //const Taskpage({Key? key}) : super(key: key);
+  final Task? task;
+  Taskpage({@required this.task});
 
   @override
   _TaskpageState createState() => _TaskpageState();
 }
 
 class _TaskpageState extends State<Taskpage> {
+  String? _taskTitle = "";
+
+  @override
+  void initState() {
+    if (widget.task != null) {
+      _taskTitle = widget.task!.title;
+    }
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -43,14 +55,22 @@ class _TaskpageState extends State<Taskpage> {
                         Expanded(
                             child: TextField(
                           onSubmitted: (value) async {
+                            //check if field is not empty
                             if (value != "") {
-                              DatabaseHelper _dbHelper = DatabaseHelper();
+                              //check if task is null
+                              if (widget.task == null) {
+                                DatabaseHelper _dbHelper = DatabaseHelper();
 
-                              Task _newTask = Task(title: value);
+                                Task _newTask = Task(title: value);
 
-                              await _dbHelper.insertTask(_newTask);
+                                await _dbHelper.insertTask(_newTask);
+                              } else {
+                                print("update");
+                              }
                             }
                           },
+                          controller: TextEditingController()
+                            ..text = _taskTitle.toString(),
                           decoration: InputDecoration(
                             hintText: "Enter Task Title...",
                             border: InputBorder.none,
@@ -78,17 +98,44 @@ class _TaskpageState extends State<Taskpage> {
                       ),
                     ),
                   ),
-                  TodoWidget(
-                    text: "Create your first task",
-                    isDone: false,
-                  ),
-                  TodoWidget(
-                    text: "Create your first todo ",
-                    isDone: true,
-                  ),
-                  TodoWidget(),
-                  TodoWidget(),
-                  TodoWidget(),
+                  Column(
+                    children: [
+                      Padding(
+                        padding: EdgeInsets.symmetric(
+                          horizontal: 24.0,
+                        ),
+                        child: Row(children: [
+                          Container(
+                            width: 20.0,
+                            height: 20.0,
+                            margin: EdgeInsets.only(
+                              right: 12.0,
+                            ),
+                            decoration: BoxDecoration(
+                              color: Colors.transparent,
+                              borderRadius: BorderRadius.circular(6.0),
+                              border: Border.all(
+                                color: Color(0xFF868290),
+                                width: 1.5,
+                              ),
+                            ),
+                            child: Image(
+                                image:
+                                    AssetImage('assets/images/check_icon.png')),
+                          ),
+                          Expanded(
+                            child: TextField(
+                              onSubmitted: (value) {},
+                              decoration: InputDecoration(
+                                hintText: "Enter Todo item...",
+                                border: InputBorder.none,
+                              ),
+                            ),
+                          ),
+                        ]),
+                      )
+                    ],
+                  )
                 ],
               ),
               Positioned(

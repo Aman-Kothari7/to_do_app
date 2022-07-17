@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class TaskCardWidget extends StatelessWidget {
-  final String title;
+  final String? title;
   final String desc;
   TaskCardWidget({this.title = "Unnamed", this.desc = "No Desc"});
 
@@ -25,7 +25,7 @@ class TaskCardWidget extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            title,
+            title.toString(),
             style: TextStyle(
               color: Color(0xFF211551),
               fontSize: 22.0,
