@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:to_do_list_app/database_helper.dart';
 import 'package:to_do_list_app/models/task.dart';
+import 'package:to_do_list_app/models/todo.dart';
 import '../widgets.dart';
 
 class Taskpage extends StatefulWidget {
@@ -100,6 +101,9 @@ class _TaskpageState extends State<Taskpage> {
                   ),
                   Column(
                     children: [
+                      ListView(
+                        children: [Text("ggg")],
+                      ),
                       Padding(
                         padding: EdgeInsets.symmetric(
                           horizontal: 24.0,
@@ -125,7 +129,26 @@ class _TaskpageState extends State<Taskpage> {
                           ),
                           Expanded(
                             child: TextField(
-                              onSubmitted: (value) {},
+                              onSubmitted: (value) async {
+                                //check if field is not empty
+                                if (value != "") {
+                                  //check if task is null
+                                  if (widget.task != null) {
+                                    DatabaseHelper _dbHelper = DatabaseHelper();
+
+                                    Todo _newTodo = Todo(
+                                      title: value,
+                                      isDone: 0,
+                                      taskId: widget.task!.id,
+                                    );
+
+                                    await _dbHelper.insertTodo(_newTodo);
+                                    print("created todo");
+                                  } else {
+                                    print("doesn't exsist");
+                                  }
+                                }
+                              },
                               decoration: InputDecoration(
                                 hintText: "Enter Todo item...",
                                 border: InputBorder.none,
