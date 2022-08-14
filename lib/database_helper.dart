@@ -86,3 +86,5 @@ class DatabaseHelper {
     await _db.rawDelete("DELETE FROM todo WHERE taskId = '$id'");
   }
 }
+
+// TODO delete individual todos using rawdelete

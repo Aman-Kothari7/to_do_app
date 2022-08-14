@@ -86,8 +86,10 @@ class _TaskpageState extends State<Taskpage> {
                         ),
                         Expanded(
                             child: TextField(
+                          //autofocus: true, TODO focus should automatically be on title
                           focusNode: _titleFocus,
                           onSubmitted: (value) async {
+                            // used onChanged instead of onSubmitted - TODO should save without pressing enter
                             //check if field is not empty
                             if (value != "") {
                               //check if task is null
@@ -270,8 +272,8 @@ class _TaskpageState extends State<Taskpage> {
                           image: AssetImage("assets/images/delete_icon.png")),
                     ),
                   ),
-                ),
-              ),
+                ), //Delete button
+              ), //Delete button
             ],
           ),
         ),
@@ -279,3 +281,5 @@ class _TaskpageState extends State<Taskpage> {
     );
   }
 }
+
+//TODO add delete button in row? for each todo_item, give function call to deleteTask in database helper
