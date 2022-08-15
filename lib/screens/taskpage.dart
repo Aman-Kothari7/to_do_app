@@ -24,7 +24,7 @@ class _TaskpageState extends State<Taskpage> {
   FocusNode? _descriptionFocus;
   FocusNode? _todoFocus;
 
-  bool _contentVisible = false;
+  bool _contentVisible = true; // TODO changed this from false to truet
 
   @override
   void initState() {
@@ -87,6 +87,7 @@ class _TaskpageState extends State<Taskpage> {
                         Expanded(
                             child: TextField(
                           //autofocus: true, TODO focus should automatically be on title
+                          autofocus: true,
                           focusNode: _titleFocus,
                           onSubmitted: (value) async {
                             // used onChanged instead of onSubmitted - TODO should save without pressing enter
@@ -227,7 +228,8 @@ class _TaskpageState extends State<Taskpage> {
                                   Todo _newTodo = Todo(
                                     title: value,
                                     isDone: 0,
-                                    taskId: widget.task!.id,
+                                    taskId:
+                                        _taskId, // TODO added this to make todos save
                                   );
 
                                   await _dbHelper.insertTodo(_newTodo);

@@ -90,11 +90,11 @@ class TodoWidget extends StatelessWidget {
               text,
               style: TextStyle(
                 color: isDone
-                    ? Color(0xFF211551)
+                    ? Color(0xFF86829D)
                     : Color(
-                        0xFF86829D), //Swap colors? Completed todo swap bold color
+                        0xFF211551), //Swap colors? Completed todo swap bold color
                 fontSize: 16.0,
-                fontWeight: isDone ? FontWeight.bold : FontWeight.w500,
+                fontWeight: isDone == false ? FontWeight.bold : FontWeight.w500,
               ),
             ),
           ),
