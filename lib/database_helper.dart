@@ -39,7 +39,7 @@ class DatabaseHelper {
     await _db.rawUpdate("UPDATE tasks SET title = '$title' WHERE id = '$id'");
   }
 
-  Future<void> updateTaskDescription(int id, String description) async {
+  Future<void> updateTaskDescription(int id, String? description) async {
     Database _db = await database();
     await _db.rawUpdate(
         "UPDATE tasks SET description = '$description' WHERE id = '$id'");

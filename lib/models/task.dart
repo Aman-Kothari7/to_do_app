@@ -8,7 +8,7 @@ class Task {
     return {
       'id': id,
       'title': title,
-      'description': description,
+      'description': "",
     };
   }
 }

@@ -122,7 +122,7 @@ class _TaskpageState extends State<Taskpage> {
                             fontWeight: FontWeight.bold,
                             color: Color(0xFF211551),
                           ),
-                        )),
+                        )), // Title
                       ],
                     ),
                   ),
@@ -285,3 +285,4 @@ class _TaskpageState extends State<Taskpage> {
 }
 
 //TODO add delete button in row? for each todo_item, give function call to deleteTask in database helper
+//TODO if we add description first then submit title it deletes the description
